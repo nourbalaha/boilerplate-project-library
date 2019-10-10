@@ -14,6 +14,8 @@ require("dotenv").config();
 var mongoose = require('mongoose');
 mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true});
 
+var Book = require("../Book");
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -32,6 +34,7 @@ module.exports = function (app) {
     .post(function (req, res){
       var title = req.body.title;
       //response will contain new book object including atleast _id and title
+
     })
     
     .delete(function(req, res){
