@@ -4,7 +4,7 @@
 	"description": "boilerplate",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"start": "nodemon server.js"
 	},
 	"dependencies": {
 		"express": "^4.14.0",
@@ -29,5 +29,8 @@
 		"hyperdev",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"nodemon": "^1.19.3"
+	}
 }
