@@ -29,6 +29,9 @@ module.exports = function (app) {
     .get(function (req, res){
       //response will be array of book objects
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
+      Book.find().then(data=>{
+        console.log(data);
+      }).catch(err=>console.log(err));
     })
     
     .post(function (req, res){

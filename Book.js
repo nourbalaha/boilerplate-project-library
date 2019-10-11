@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
-    title: String
+    title: String,
+    comments: []
 })
 
 const Book = mongoose.model("Book", bookSchema);
