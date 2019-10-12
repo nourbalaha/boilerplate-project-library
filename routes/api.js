@@ -25,20 +25,20 @@ db.once('open', function() {
 
 module.exports = function (app) {
 
-  app.route('/api/books')
+  app.route('/api/books/')
     .get(function (req, res){
       //response will be array of book objects
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
-      Book.find().then(results=>{
-        const result = results.map(data=>{
-          return({
-            _id: data._id,
-            title: data.title,
-            commentcount: data.comments.length
-          })
-        })
-        res.json(result);
-      }).catch(err=>console.log(err));
+          Book.find().then(results=>{
+            const result = results.map(data=>{
+              return({
+                _id: data._id,
+                title: data.title,
+                commentcount: data.comments.length
+              })
+            })
+            res.json(result);
+          }).catch(err=>console.log(err));
     })
     
     .post(function (req, res){
@@ -60,12 +60,18 @@ module.exports = function (app) {
     .get(function (req, res){
       var bookid = req.params.id;
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
+        Book.findById(bookid)
+        .then(data=>{
+          res.json(data);
+        })
+        .catch(err=>console.error(err));
     })
     
     .post(function(req, res){
       var bookid = req.params.id;
       var comment = req.body.comment;
       //json res format same as .get
+      
     })
     
     .delete(function(req, res){
