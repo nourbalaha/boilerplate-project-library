@@ -44,10 +44,14 @@ module.exports = function (app) {
     .post(function (req, res){
       //response will contain new book object including atleast _id and title
       const title = req.body.title;
-      const book = new Book({title});
-      book.save().then(data=>{
-        res.json(data);
-      }).catch(err=>console.error(err))
+      if(title==""){
+        res.send("no title added")
+      } else {
+        const book = new Book({title});
+        book.save().then(data=>{
+          res.json(data);
+        }).catch(err=>console.error(err))
+      }
     })
     
     .delete(function(req, res){
