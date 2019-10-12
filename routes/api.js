@@ -66,7 +66,11 @@ module.exports = function (app) {
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
         Book.findById(bookid)
         .then(data=>{
-          res.json(data);
+          if(data!==null){
+            res.json(data);
+          } else {
+            res.send('no book exists');
+          }
         })
         .catch(err=>console.error(err));
     })
