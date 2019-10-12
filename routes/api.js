@@ -29,8 +29,15 @@ module.exports = function (app) {
     .get(function (req, res){
       //response will be array of book objects
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
-      Book.find().then(data=>{
-        console.log(data);
+      Book.find().then(results=>{
+        const result = results.map(data=>{
+          return({
+            _id: data._id,
+            title: data.title,
+            commentcount: data.comments.length
+          })
+        })
+        res.json(result);
       }).catch(err=>console.log(err));
     })
     
